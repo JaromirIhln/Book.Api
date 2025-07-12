@@ -31,7 +31,7 @@ Content-Type: application/json
 ###
 
 
-@id=5
+@id=6
 DELETE {{Book.Api_HostAddress}}/api/books/{{id}}
 
 ###

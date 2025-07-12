@@ -13,15 +13,15 @@ This project uses Mapper and Swashbuckle extensions.
 ## Getting Started
 ---
 1. Clone the repository
-```Bush
-git clone https://github.com/JaromirIhln/Book.Api.git
+```bash
+* **`#git clone https://github.com/JaromirIhln/Book.Api.git
 ```
 ### 2. Install dependencies
 ---
  * .NET SDK (9.0 +)
 ### 3. Run the aplication
 ---
-   ```Bush
+   ```bash
    dotnet run
    ```
    or `F5` on VisualStudio

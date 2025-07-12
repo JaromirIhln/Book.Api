@@ -1,0 +1,220 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Book.Data</name>
+    </assembly>
+    <members>
+        <member name="T:Book.Data.BookDbContext">
+            <summary>
+            Represents a session with the database for managing book-related data.
+            </summary>
+            <remarks>This class provides the necessary context for querying and saving instances of book entities.
+            It is typically used in conjunction with Entity Framework to perform database operations.</remarks>
+        </member>
+        <member name="P:Book.Data.BookDbContext.Books">
+            <summary>
+            Gets or sets the collection of books in the database context.
+            </summary>
+        </member>
+        <member name="M:Book.Data.BookDbContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{Book.Data.BookDbContext})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Book.Data.BookDbContext"/> class using the specified options.
+            </summary>
+            <param name="options">The options to be used by the <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/>. This includes configuration settings such as the
+            database provider and connection string.</param>
+        </member>
+        <member name="M:Book.Data.BookDbContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Configures the model for the context by defining the schema needed for the database.
+            </summary>
+            <remarks>This method is called when the model for a derived context has been initialized, but
+            before the model has been locked down and used to initialize the context. The default implementation of this
+            method does nothing, but it can be overridden in a derived class to configure the model. In this
+            implementation, the <c>Books</c> entity is configured with specific constraints such as primary key and
+            required properties with maximum lengths.</remarks>
+            <param name="modelBuilder">The builder used to construct the model for the context.</param>
+        </member>
+        <member name="T:Book.Data.Interfaces.IBaseRepository`1">
+            <summary>
+            Defines a generic repository interface for performing CRUD operations on entities of type <typeparamref
+            name="TEntity"/>.
+            </summary>
+            <typeparam name="TEntity">The type of the entity that the repository will manage. Must be a reference type.</typeparam>
+        </member>
+        <member name="M:Book.Data.Interfaces.IBaseRepository`1.GetAllBooks">
+            <summary>
+            Retrieves a list of all books.
+            </summary>
+            <returns>A list of all books represented as <see cref="T:System.Collections.Generic.IList`1"/>. The list will be empty if no books are
+            available.</returns>
+        </member>
+        <member name="M:Book.Data.Interfaces.IBaseRepository`1.GetById(System.Int32)">
+            <summary>
+            Retrieves an entity by its unique identifier.
+            </summary>
+            <param name="id">The unique identifier of the entity to retrieve. Must be a positive integer.</param>
+            <returns>The entity associated with the specified identifier, or <see langword="null"/> if no such entity exists.</returns>
+        </member>
+        <member name="M:Book.Data.Interfaces.IBaseRepository`1.Insert(`0)">
+            <summary>
+            Inserts the specified entity into the data store.
+            </summary>
+            <param name="entity">The entity to insert. Cannot be null.</param>
+            <returns>The inserted entity, including any updates made during the insertion process.</returns>
+        </member>
+        <member name="M:Book.Data.Interfaces.IBaseRepository`1.Update(`0)">
+            <summary>
+            Updates the specified entity in the data store.
+            </summary>
+            <param name="entity">The entity to update. Cannot be null.</param>
+            <returns>The updated entity.</returns>
+        </member>
+        <member name="M:Book.Data.Interfaces.IBaseRepository`1.Delete(System.Int32)">
+            <summary>
+            Deletes the entity with the specified identifier.
+            </summary>
+            <remarks>Ensure that the entity with the specified <paramref name="id"/> exists before calling
+            this method to avoid unexpected behavior.</remarks>
+            <param name="id">The unique identifier of the entity to be deleted. Must be a positive integer.</param>
+        </member>
+        <member name="T:Book.Data.Interfaces.IBookRepository">
+            <summary>
+            Defines a contract for a repository that manages book entities.
+            </summary>
+            <remarks>Implementations of this interface are responsible for providing data access operations for
+            book entities, such as retrieving, adding, updating, or deleting books.</remarks>
+        </member>
+        <member name="T:Book.Data.Migrations.InitialCreate">
+            <inheritdoc />
+        </member>
+        <member name="M:Book.Data.Migrations.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Book.Data.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Book.Data.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Book.Data.Models.Books">
+            <summary>
+            Represents a book with properties for identification, title, author, description, creation date, and
+            availability status.
+            </summary>
+        </member>
+        <member name="P:Book.Data.Models.Books.Id">
+            <summary>
+            Gets or sets the unique identifier for the entity.
+            </summary>
+        </member>
+        <member name="P:Book.Data.Models.Books.Title">
+            <summary>
+            Gets or sets the title of the item. 
+            </summary>
+        </member>
+        <member name="P:Book.Data.Models.Books.Author">
+            <summary>
+            Gets or sets the name of the author.
+            </summary>
+        </member>
+        <member name="P:Book.Data.Models.Books.Description">
+            <summary>
+            Gets or sets the description text.
+            </summary>
+        </member>
+        <member name="P:Book.Data.Models.Books.CraatedAt">
+            <summary>
+            Gets or sets the date and time when the entity was created.
+            </summary>
+        </member>
+        <member name="P:Book.Data.Models.Books.IsAvailable">
+            <summary>
+            Gets or sets a value indicating whether the item is available.
+            </summary>
+        </member>
+        <member name="T:Book.Data.Repositories.BaseRepositories`1">
+            <summary>
+            Provides a base implementation for repository operations on entities of type <typeparamref name="TEntity"/>.
+            </summary>
+            <remarks>This class offers basic CRUD operations for entities within a database context. It is
+            designed to be extended by more specific repository classes.</remarks>
+            <typeparam name="TEntity">The type of the entity for which the repository is responsible. Must be a reference type.</typeparam>
+        </member>
+        <member name="F:Book.Data.Repositories.BaseRepositories`1.bookDbContext">
+            <summary>
+            Represents the database context used for accessing book-related data.
+            </summary>
+            <remarks>This field is intended for use within derived classes to interact with the database.
+            It provides access to the underlying data store for operations related to books.</remarks>
+        </member>
+        <member name="F:Book.Data.Repositories.BaseRepositories`1._dbSet">
+            <summary>
+            Represents the database set for the specified entity type.  
+            </summary>
+            <remarks>This field is used to perform CRUD operations on the entity type <typeparamref
+            name="TEntity"/>. It is typically initialized in the constructor of a class that manages database
+            operations.</remarks>
+        </member>
+        <member name="M:Book.Data.Repositories.BaseRepositories`1.#ctor(Book.Data.BookDbContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Book.Data.Repositories.BaseRepositories`1"/> class with the specified database
+            context.
+            </summary>
+            <remarks>This constructor sets up the repository to interact with the specified database
+            context, allowing operations on the entity set of type <typeparamref name="TEntity"/>.</remarks>
+            <param name="context">The <see cref="T:Book.Data.BookDbContext"/> used to access the database. Cannot be <see langword="null"/>.</param>
+        </member>
+        <member name="M:Book.Data.Repositories.BaseRepositories`1.GetAllBooks">
+            <summary>
+            Retrieves all book entities from the database.
+            </summary>
+            <returns>A list of all book entities. The list will be empty if no books are found.</returns>
+        </member>
+        <member name="M:Book.Data.Repositories.BaseRepositories`1.GetById(System.Int32)">
+            <summary>
+            Retrieves an entity by its unique identifier.
+            </summary>
+            <remarks>The returned entity is detached from the context, meaning it is not tracked by the
+            database context.</remarks>
+            <param name="id">The unique identifier of the entity to retrieve.</param>
+            <returns>The entity with the specified identifier, or <see langword="null"/> if no such entity exists.</returns>
+        </member>
+        <member name="M:Book.Data.Repositories.BaseRepositories`1.Insert(`0)">
+            <summary>
+            Inserts a new entity into the database and saves the changes.
+            </summary>
+            <param name="entity">The entity to be inserted. Cannot be null.</param>
+            <returns>The inserted entity with updated state from the database.</returns>
+        </member>
+        <member name="M:Book.Data.Repositories.BaseRepositories`1.Update(`0)">
+            <summary>
+            Updates the specified entity in the database and saves the changes.
+            </summary>
+            <param name="entity">The entity to update. Must not be null.</param>
+            <returns>The updated entity.</returns>
+        </member>
+        <member name="M:Book.Data.Repositories.BaseRepositories`1.Delete(System.Int32)">
+            <summary>
+            Deletes the entity with the specified identifier from the database.
+            </summary>
+            <remarks>If the entity with the specified identifier does not exist, the method completes
+            without making any changes. If an error occurs during the deletion process, the entity's state is reset to
+            unchanged, and the exception is rethrown.</remarks>
+            <param name="id">The identifier of the entity to be deleted. Must be a valid identifier of an existing entity.</param>
+        </member>
+        <member name="T:Book.Data.Repositories.BookRepository">
+            <summary>  
+            Provides a repository for managing <see cref="T:Book.Data.Models.Books"/> entities.  
+            </summary>  
+            <remarks>This class implements the <see cref="T:Book.Data.Interfaces.IBaseRepository`1"/> and <see cref="T:Book.Data.Interfaces.IBookRepository"/>  
+            interfaces, providing methods for CRUD operations and additional functionality specific to <see cref="T:Book.Data.Models.Books"/>  
+            entities.</remarks>  
+        </member>
+        <member name="M:Book.Data.Repositories.BookRepository.#ctor(Book.Data.BookDbContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Book.Data.Repositories.BookRepository"/> class with the specified database context.
+            </summary>
+            <param name="context">The <see cref="T:Book.Data.BookDbContext"/> used to access the book data store. Cannot be null.</param>
+        </member>
+    </members>
+</doc>

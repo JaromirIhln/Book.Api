@@ -1,0 +1,223 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Book.Api</name>
+    </assembly>
+    <members>
+        <member name="T:Book.Api.AutoMapperConfiguration">
+            <summary>
+            Provides a configuration profile for AutoMapper to map between data models and DTOs.
+            </summary>
+            <remarks>This class defines mapping configurations using AutoMapper's <see cref="T:AutoMapper.Profile"/> base
+            class. It includes mappings between <see cref="T:Book.Data.Models.Books"/> and <see cref="T:Book.Api.Models.BookDto"/> with reverse
+            mapping enabled. Additional mappings can be configured by uncommenting the provided examples or adding new ones
+            as needed.</remarks>
+        </member>
+        <member name="M:Book.Api.AutoMapperConfiguration.#ctor">
+            <summary>
+            Mapping configuration for AutoMapper.
+            </summary>
+        </member>
+        <member name="T:Book.Api.Controllers.BooksController">
+            <summary>
+            Provides API endpoints for managing books in the system.
+            </summary>
+            <remarks>This controller handles HTTP requests for retrieving, creating, updating, and deleting books.
+            It uses the <see cref="T:Book.Api.Interfaces.IBookServices"/> to perform operations on book data.</remarks>
+        </member>
+        <member name="F:Book.Api.Controllers.BooksController.bookServicecs">
+            <summary>
+            Provides access to book-related services.
+            </summary>
+            <remarks>This field is intended to be used for operations related to book management, such as
+            retrieving, adding, or updating book information. Ensure that the implementation of <see
+            cref="T:Book.Api.Interfaces.IBookServices"/> is properly initialized before use.</remarks>
+        </member>
+        <member name="M:Book.Api.Controllers.BooksController.#ctor(Book.Api.Interfaces.IBookServices)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Book.Api.Controllers.BooksController"/> class with the specified book services.
+            </summary>
+            <param name="bookServicecs">The service used to manage book-related operations.</param>
+        </member>
+        <member name="M:Book.Api.Controllers.BooksController.GetBook(System.Int32)">
+            <summary>
+            Retrieves a book by its unique identifier.
+            </summary>
+            <remarks>This method returns an HTTP 404 status code if the book with the specified <paramref
+            name="id"/> does not exist.</remarks>
+            <param name="id">The unique identifier of the book to retrieve.</param>
+            <returns>An <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult`1"/> containing the <see cref="T:Book.Api.Models.BookDto"/> if found; otherwise, a NotFound
+            result.</returns>
+        </member>
+        <member name="M:Book.Api.Controllers.BooksController.GetAllBooks">
+            <summary>
+            Retrieves a list of all books.
+            </summary>
+            <returns>An <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult`1"/> containing a list of <see cref="T:Book.Api.Models.BookDto"/> objects representing all books.
+            Returns <see cref="T:Microsoft.AspNetCore.Mvc.NotFoundResult"/> if no books are available.</returns>
+        </member>
+        <member name="M:Book.Api.Controllers.BooksController.Create(Book.Api.Models.BookDto)">
+            <summary>
+            Creates a new book entry in the system.
+            </summary>
+            <param name="book">The book data transfer object containing the details of the book to be created. Cannot be null.</param>
+            <returns>An <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult`1"/> containing the created <see cref="T:Book.Api.Models.BookDto"/> and a location header pointing
+            to the new resource.</returns>
+        </member>
+        <member name="M:Book.Api.Controllers.BooksController.Update(Book.Api.Models.BookDto)">
+            <summary>
+            Updates the details of an existing book.
+            </summary>
+            <param name="book">The <see cref="T:Book.Api.Models.BookDto"/> object containing the updated book details. Cannot be null.</param>
+            <returns>An <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult`1"/> containing the updated <see cref="T:Book.Api.Models.BookDto"/> if the update is successful;
+            otherwise, a <see cref="T:Microsoft.AspNetCore.Mvc.BadRequestResult"/> if the input is null, or a <see cref="T:Microsoft.AspNetCore.Mvc.NotFoundResult"/> if the
+            book does not exist.</returns>
+        </member>
+        <member name="M:Book.Api.Controllers.BooksController.Delete(System.Int32)">
+            <summary>
+            Deletes the book with the specified identifier.
+            </summary>
+            <param name="id">The identifier of the book to delete. Must be a valid book ID.</param>
+            <returns>An <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult"/> indicating the result of the delete operation. Returns <see
+            cref="T:Microsoft.AspNetCore.Mvc.NotFoundResult"/> if the book does not exist; otherwise, returns <see cref="T:Microsoft.AspNetCore.Mvc.NoContentResult"/>.</returns>
+        </member>
+        <member name="T:Book.Api.Interfaces.IBookServices">
+            <summary>
+            Provides methods for managing books, including retrieval, creation, updating, and deletion.
+            </summary>
+        </member>
+        <member name="M:Book.Api.Interfaces.IBookServices.GetBook(System.Int32)">
+            <summary>
+            Retrieves the book details for the specified book identifier.
+            </summary>
+            <param name="id">The unique identifier of the book to retrieve.</param>
+            <returns>A <see cref="T:Book.Api.Models.BookDto"/> containing the details of the book. Returns <see langword="null"/> if the book is
+            not found.</returns>
+        </member>
+        <member name="M:Book.Api.Interfaces.IBookServices.GetAllBooks">
+            <summary>
+            Retrieves a collection of books.
+            </summary>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <see cref="T:Book.Api.Models.BookDto"/> representing the books available. The collection
+            will be empty if no books are available.</returns>
+        </member>
+        <member name="M:Book.Api.Interfaces.IBookServices.Create(Book.Api.Models.BookDto)">
+            <summary>
+            Creates a new book entry based on the provided book details.
+            </summary>
+            <param name="book">The details of the book to create. Must not be null.</param>
+            <returns>A <see cref="T:Book.Api.Models.BookDto"/> representing the newly created book.</returns>
+        </member>
+        <member name="M:Book.Api.Interfaces.IBookServices.Update(Book.Api.Models.BookDto)">
+            <summary>
+            Updates the details of an existing book.
+            </summary>
+            <remarks>The method updates the book's information in the data store. Ensure that the book's
+            identifier is valid and corresponds to an existing entry.</remarks>
+            <param name="book">The <see cref="T:Book.Api.Models.BookDto"/> containing the updated information for the book. Must not be null.</param>
+            <returns>The updated <see cref="T:Book.Api.Models.BookDto"/> reflecting the changes made.</returns>
+        </member>
+        <member name="T:Book.Api.Models.BookDto">
+            <summary>
+            Represents a data transfer object for a book, containing essential information such as title, author, and
+            availability status.
+            </summary>
+            <remarks>This class is used to transfer book data between different layers of an application. It
+            includes properties for the book's title, author, description, creation date, and availability status.</remarks>
+        </member>
+        <member name="P:Book.Api.Models.BookDto.Title">
+            <summary>
+            Gets or sets the title of the item. 
+            </summary>
+        </member>
+        <member name="P:Book.Api.Models.BookDto.Author">
+            <summary>
+            Gets or sets the name of the author.
+            </summary>
+        </member>
+        <member name="P:Book.Api.Models.BookDto.Description">
+            <summary>
+            Gets or sets the description text.
+            </summary>
+        </member>
+        <member name="P:Book.Api.Models.BookDto.CraatedAt">
+            <summary>
+            Gets or sets the date and time when the entity was created.
+            </summary>
+        </member>
+        <member name="P:Book.Api.Models.BookDto.IsAvailable">
+            <summary>
+            Gets or sets a value indicating whether the item is available.
+            </summary>
+        </member>
+        <member name="T:Book.Api.Services.BookService">
+            <summary>
+            Provides services for managing books, including operations to retrieve, create, update, and delete book records.
+            </summary>
+            <remarks>This service acts as an intermediary between the data repository and the application,
+            handling data mapping and business logic related to book management. It uses an <see cref="T:Book.Data.Interfaces.IBookRepository"/> to
+            perform data operations and an <see cref="T:AutoMapper.IMapper"/> to map between data models and DTOs.</remarks>
+        </member>
+        <member name="F:Book.Api.Services.BookService._bookRepository">
+            <summary>
+            Represents a repository for managing book-related data operations.
+            </summary>
+            <remarks>This field is used to interact with the underlying data store for book entities. It
+            is intended for internal use within the class to perform CRUD operations on books.</remarks>
+        </member>
+        <member name="F:Book.Api.Services.BookService._mapper">
+            <summary>
+            Provides mapping functionality between objects using the specified mapper.
+            </summary>
+            <remarks>This field is used to perform object-to-object mapping, typically for converting
+            between different data models or DTOs. The mapper is initialized externally and should be configured to
+            handle the necessary mappings.</remarks>
+        </member>
+        <member name="M:Book.Api.Services.BookService.#ctor(Book.Data.Interfaces.IBookRepository,AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Book.Api.Services.BookService"/> class with the specified book repository and
+            mapper.
+            </summary>
+            <param name="bookRepository">The repository used to access and manage book data. Cannot be null.</param>
+            <param name="mapper">The mapper used to convert between data models and view models. Cannot be null.</param>
+        </member>
+        <member name="M:Book.Api.Services.BookService.GetAllBooks">
+            <summary>
+            Retrieves a list of all books available in the repository.
+            </summary>
+            <returns>A list of <see cref="T:Book.Api.Models.BookDto"/> objects representing all books. The list will be empty if no books are
+            available.</returns>
+        </member>
+        <member name="M:Book.Api.Services.BookService.GetBook(System.Int32)">
+            <summary>
+            Retrieves a book by its unique identifier.
+            </summary>
+            <param name="id">The unique identifier of the book to retrieve.</param>
+            <returns>A <see cref="T:Book.Api.Models.BookDto"/> representing the book with the specified identifier. Returns <see langword="null"/>
+            if no book with the given identifier is found.</returns>
+        </member>
+        <member name="M:Book.Api.Services.BookService.Create(Book.Api.Models.BookDto)">
+            <summary>
+            Creates a new book record in the repository based on the provided book data transfer object.
+            </summary>
+            <param name="bookDto">The data transfer object containing the details of the book to be created. The <c>Id</c> property is ignored
+            and set to default.</param>
+            <returns>A <see cref="T:Book.Api.Models.BookDto"/> representing the newly created book, including its assigned identifier.</returns>
+        </member>
+        <member name="M:Book.Api.Services.BookService.Update(Book.Api.Models.BookDto)">
+            <summary>
+            Updates an existing book record with the specified data.
+            </summary>
+            <param name="bookDto">The data transfer object containing the updated book information.</param>
+            <returns>A <see cref="T:Book.Api.Models.BookDto"/> representing the updated book.</returns>
+        </member>
+        <member name="M:Book.Api.Services.BookService.Delete(System.Int32)">
+            <summary>
+            Deletes the book with the specified identifier from the repository.
+            </summary>
+            <remarks>If the book with the specified identifier does not exist, the method completes
+            without performing any action.</remarks>
+            <param name="id">The identifier of the book to delete. Must be a valid identifier of an existing book.</param>
+        </member>
+    </members>
+</doc>

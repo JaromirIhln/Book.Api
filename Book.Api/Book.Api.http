@@ -1,0 +1,37 @@
+﻿@Book.Api_HostAddress = https://localhost:7022
+
+POST {{Book.Api_HostAddress}}/api/books
+Content-Type: application/json
+
+{
+     "title": "Test Book",
+     "author": "John Doe",
+     "description": "Test description",
+     "craatedAt": "2025-07-12T00:00:00",
+     "isAvailable": true
+}
+
+###
+GET {{Book.Api_HostAddress}}/api/books
+###
+GET {{Book.Api_HostAddress}}/api/books/1
+###
+
+PUT {{Book.Api_HostAddress}}/api/books
+Content-Type: application/json
+
+{
+   "title": "Test Book",
+     "author": "John Doe",
+     "description": "Test description",
+     "craatedAt": "2025-07-12T00:00:00",
+     "isAvailable": false
+}
+
+###
+
+
+@id=5
+DELETE {{Book.Api_HostAddress}}/api/books/{{id}}
+
+###

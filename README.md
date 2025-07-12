@@ -14,7 +14,7 @@ This project uses Mapper and Swashbuckle extensions.
 ---
 1. Clone the repository
 ```bash
-* **`#git clone https://github.com/JaromirIhln/Book.Api.git
+  git clone https://github.com/JaromirIhln/Book.Api.git
 ```
 ### 2. Install dependencies
 ---

@@ -27,8 +27,8 @@ This project uses Mapper and Swashbuckle extensions.
    or `F5` on VisualStudio
 ### 4. Access Swagger UI
 ---
- *  * Navigate to ([SwaggerUI](https://localhost:7219/swagger) (open page /index.html))
-    (or your configured port) to explore the API.)
+ *  * Navigate to <https://localhost:7219/swagger> (open page /index.html))
+    (or your configured port) to explore the API.
 ## API Endpoits
 ---
   * `GET /api/books` - Retrieve all books

@@ -27,7 +27,7 @@ This project uses Mapper and Swashbuckle extensions.
    or `F5` on VisualStudio
 ### 4. Access Swagger UI
 ---
- *  * Navigate to [https//localhost:[used port]/swagger](https//localhost:[used port]/swagger) (open page /index.html)
+ *  * Navigate to ([SwaggerUI](https://localhost:7219/swagger) (open page /index.html))
     (or your configured port) to explore the API.)
 ## API Endpoits
 ---
@@ -38,4 +38,4 @@ This project uses Mapper and Swashbuckle extensions.
   * `DELETE /api/books/{id}` - Delete a book
 ## License
 ---
-This project is open source and available under the [MIT License] (MIT License).
+This project is open source and available under the ([MIT License](https://opensource.org/licenses/MIT)).
